@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 18.02.0
+
+
+script:
+  - docker-compose up -d
+  - docker-compose stop
