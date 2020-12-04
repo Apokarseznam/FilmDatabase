@@ -1,5 +1,6 @@
 # FilmDatabase
 
+[![Build Status](https://travis-ci.org/Apokarseznam/FilmDatabase.svg?branch=main)](https://travis-ci.org/Apokarseznam/FilmDatabase)
 
 This is a Spring Boot Java app.
 
