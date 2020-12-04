@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Odstranění filmu</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container">
+            <br/>
+            <a onclick="javascript:window.history.back()" class="btn btn-success">Zpět</a>
+            <br/>
+            <br/>
+
+            <h1>Odstranění filmu</h1>
+            <br/>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Název:</th>
+                        <td th:text="${film.name}" />
+                    </tr>
+                    <tr>
+                        <th>Rok:</th>
+                        <td th:text="${film.year}" />
+                    </tr>
+                    <tr>
+                        <th>Země:</th>
+                        <td th:text="${film.country}" />
+                    </tr>
+                    <tr>
+                        <th>Žánr:</th>
+                        <td th:text="${film.genres}" />
+                    </tr>
+                    <tr>
+                        <th>Režisér:</th>
+                        <td th:text="${film.director}" />
+                    </tr>
+                </table>
+                <a th:href="@{/deleteConfirmed(Id=${film.id})}" class="btn btn-danger" style="float: left;">Smazat</a>
+            </div>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+  docker-mysql:
+    container_name: MysqlFilm
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=Film
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    ports:
+      - 3307:3306
+    volumes: 
+      - ./sql-script:/docker-entrypoint-initdb.d
+
+  app:
+    container_name: FilmApp
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+       - 8088:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/Film?useUnicode=true&connectionCollation=utf8_general_ci
+           &characterSetResults=utf8&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    restart: always
+    depends_on:
+       - docker-mysql

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Hodnocené filmy</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link type="text/css" rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+        <link type="text/css" rel="stylesheet" th:href="@{https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css}" />
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <br/>
+            <a href="unWatchedFilm" class="btn btn-success">Filmy k zhlédnutí</a>
+            <a href="add" class="btn btn-success">Nový film</a>
+            <br/>
+            <br/>
+
+            <h1>Hodnocené filmy</h1>
+            <div class="table-responsive">
+                <table class="table table-striped" id="todotable">
+                    <thead>
+                        <tr>
+                            <th>Název</th>
+                            <th>Rok</th>
+                            <th>Země</th>
+                            <th>Žánr</th>
+                            <th>Režisér</th>
+                            <th>Hodnocení</th>
+                            <th>Upravit</th>
+                            <th>Smazat</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+               var table = $('#todotable').DataTable({
+			 "language": {
+    			 "search": "Vyhledat:",
+			 "paginate": {
+     				 "previous": "Předchozí",
+				 "next": "Následující"
+    					}
+  			},
+			"lengthChange": false,
+			"info": false,
+			"sAjaxSource": "/api/watchedFilm",
+			"sAjaxDataProp": "",
+			"order": [ [ 0, "asc" ] ],
+			"columns": [
+				{ "data": "name"},
+				{ "data": "year"},
+				{ "data": "country"},
+				{ "data": "genres"},
+				{ "data": "director"},
+				{ "mData": null,
+				"mRender": function ( data, type, full ) {
+        			return full["score"] + '%';
+    				}
+				},
+				{ 
+				"mData": null,
+                		"bSortable": false,
+				"mRender": function(data, type, full) {
+    					return '<a  href=/update?Id=' + full["id"] + '> <i class="material-icons" title="Upravit">edit</i> </a>';
+  					}
+				},
+				{ 
+				"mData": null,
+                		"bSortable": false,
+				"mRender": function(data, type, full) {
+    					return '<a  href=/delete?Id=' + full["id"] + '> <i class="material-icons" title="Smazat">delete</i> </a>';
+                            		}
+                       	 },
+                    ]
+                })
+            });
+        </script>
+    </body>
+</html>
+

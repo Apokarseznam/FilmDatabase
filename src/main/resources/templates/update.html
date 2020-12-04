@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Upravit film</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container">
+            <br/>
+            <a onclick="javascript:window.history.back()" class="btn btn-success">Zpět</a>
+            <br/>
+            <br/>
+            <h1>Upravit film</h1>
+            <br/>
+
+            <form action="#" th:action="@{/updateFilm}" method="post" th:object="${film}">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="name">Název:</label>
+                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="year">Rok:</label>
+                    <input type="number" class="form-control" id="year" name="year" th:field="*{year}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="year">Země:</label>
+                    <input type="text" class="form-control" id="country" name="country" th:field="*{country}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="genres">Žánr:</label>
+                    <input type="text" class="form-control" id="genres" name="genres" th:field="*{genres}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="director">Režisér:</label>
+                    <input type="text" class="form-control" id="director" name="director" th:field="*{director}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('director')}" th:errors="*{director}"></p>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" class="form-control" id="viewed" name="viewed" th:field="*{viewed}" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="score">Hodnocení:</label>
+                    <input type="number" class="form-control" id="score" name="score" th:field="*{score}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-ok-sign"></span>
+                    <b> Potvrdit</b>
+                </button>
+            </form>
+        </div>
+    </body>
+</html>
+
