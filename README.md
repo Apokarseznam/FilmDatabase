@@ -15,7 +15,7 @@ This is a Spring Boot Java app.
 
 ### To get the code:
 ```shell
-$ git clone https://github.com/Apokarseznam/AutoApp.git
+$ git clone https://github.com/Apokarseznam/FilmDatabase.git
 ```
 ### Running the app with Docker:
 Just need to execute:
